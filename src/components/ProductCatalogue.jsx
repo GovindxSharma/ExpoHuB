@@ -1,43 +1,105 @@
-import React from "react";
+import React, { useState } from "react";
 
 const products = [
-  {
-    id: 1,
-    name: "Premium Dry Fruits Mix",
-    description: "A healthy mix of hand-picked dry fruits sourced globally.",
-    image:
-      "https://augasonfarms.com/cdn/shop/articles/freeze-dried-fruits-nutritious-tasty-and-easy-to-take-anywhere-395723_1296x.jpg?v=1744390505",
-    category: "Food & Agro",
-  },
-  {
-    id: 2,
-    name: "Organic Spices Pack",
-    description: "Finest Indian spices, carefully processed and packed for export.",
-    image:
-      "https://images.unsplash.com/photo-1600783245928-5c5b80e16256?auto=format&fit=crop&w=800&q=80",
-    category: "Food & Agro",
-  },
-  {
-    id: 3,
-    name: "Handcrafted Ceramic Set",
-    description: "Beautiful handmade ceramic dinnerware perfect for export.",
-    image:
-      "https://images.unsplash.com/photo-1601050690597-89a3b1d25b4b?auto=format&fit=crop&w=800&q=80",
-    category: "Home Decor",
-  },
-  {
-    id: 4,
-    name: "Textile Collection",
-    description: "Premium cotton and silk fabrics for global markets.",
-    image:
-      "https://images.unsplash.com/photo-1560840068-5cc0c0b9d02b?auto=format&fit=crop&w=800&q=80",
-    category: "Textiles",
-  },
-];
-
+    {
+      id: 1,
+      name: "Premium Dry Fruits Mix",
+      description: "A healthy mix of hand-picked dry fruits sourced globally.",
+      image: "https://images.pexels.com/photos/102104/pexels-photo-102104.jpeg",
+      category: "Food & Agro",
+    },
+    {
+      id: 2,
+      name: "Organic Spices Pack",
+      description: "Finest Indian spices, carefully processed and packed for export.",
+      image: "https://images.pexels.com/photos/678414/pexels-photo-678414.jpeg",
+      category: "Food & Agro",
+    },
+    {
+      id: 3,
+      name: "Handcrafted Ceramic Set",
+      description: "Beautiful handmade ceramic dinnerware perfect for export.",
+      image: "https://images.pexels.com/photos/128817/pexels-photo-128817.jpeg",
+      category: "Home Decor",
+    },
+    {
+      id: 4,
+      name: "Textile Collection",
+      description: "Premium cotton and silk fabrics for global markets.",
+      image: "https://static.vecteezy.com/system/resources/thumbnails/032/467/269/small/close-up-shots-illuminating-the-complex-beauty-of-various-woven-textiles-photo.jpg",
+      category: "Textiles",
+    },
+    {
+      id: 5,
+      name: "Natural Honey",
+      description: "Pure, unprocessed honey packed with nutrition and taste.",
+      image: "https://images.pexels.com/photos/847078/pexels-photo-847078.jpeg",
+      category: "Food & Agro",
+    },
+    {
+      id: 6,
+      name: "Organic Tea Leaves",
+      description: "Premium handpicked tea leaves from India's finest gardens.",
+      image: "https://images.pexels.com/photos/1417945/pexels-photo-1417945.jpeg",
+      category: "Beverages",
+    },
+    {
+      id: 7,
+      name: "Handwoven Baskets",
+      description: "Eco-friendly and stylish handwoven baskets made by artisans.",
+      image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRWQoYOcg_5A0sUhUn7ycVmTiiG8XGAw8Hzow&s",
+      category: "Handicrafts",
+    },
+    {
+      id: 8,
+      name: "Jute Bags",
+      description: "Durable and reusable jute bags for sustainable exports.",
+      image: "https://images.pexels.com/photos/236973/pexels-photo-236973.jpeg",
+      category: "Eco Products",
+    },
+    {
+      id: 9,
+      name: "Leather Wallets",
+      description: "Premium leather wallets crafted for global markets.",
+      image: "https://images.pexels.com/photos/326590/pexels-photo-326590.jpeg",
+      category: "Accessories",
+    },
+    {
+      id: 10,
+      name: "Coconut Shell Crafts",
+      description: "Creative handicrafts made from natural coconut shells.",
+      image: "https://images.pexels.com/photos/4110256/pexels-photo-4110256.jpeg",
+      category: "Handicrafts",
+    },
+    {
+      id: 11,
+      name: "Herbal Cosmetic Set",
+      description: "Natural skincare products made with herbal ingredients.",
+      image: "https://images.pexels.com/photos/3737587/pexels-photo-3737587.jpeg",
+      category: "Cosmetics",
+    },
+    {
+      id: 12,
+      name: "Essential Oils Collection",
+      description: "Pure essential oils extracted from nature for wellness.",
+      image: "https://images.pexels.com/photos/4041392/pexels-photo-4041392.jpeg",
+      category: "Wellness",
+    },
+  ];
+  
+  
+  
+  
 const ProductCatalogue = () => {
+  const [visible, setVisible] = useState(8);
+
+  const showMore = () => {
+    setVisible((prev) => prev + 4);
+  };
+
   return (
     <section className="relative py-20 bg-gradient-to-b from-white to-indigo-50">
+      {/* Background Orbs */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-indigo-500/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-400/10 blur-3xl rounded-full"></div>
 
@@ -54,7 +116,7 @@ const ProductCatalogue = () => {
 
         {/* Product Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          {products.map((product) => (
+          {products.slice(0, visible).map((product) => (
             <div
               key={product.id}
               className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:-translate-y-1"
@@ -87,11 +149,16 @@ const ProductCatalogue = () => {
         </div>
 
         {/* View More */}
-        <div className="text-center mt-14">
-          <button className="px-8 py-3 bg-indigo-700 text-white font-semibold rounded-lg hover:bg-indigo-800 transition-all duration-300 shadow-md">
-            View All Products
-          </button>
-        </div>
+        {visible < products.length && (
+          <div className="text-center mt-14">
+            <button
+              onClick={showMore}
+              className="px-8 py-3 bg-indigo-700 text-white font-semibold rounded-lg hover:bg-indigo-800 transition-all duration-300 shadow-md"
+            >
+              View More Products
+            </button>
+          </div>
+        )}
       </div>
     </section>
   );
