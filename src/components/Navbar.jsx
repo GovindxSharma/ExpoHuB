@@ -4,12 +4,29 @@ const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/about" },
-    { name: "Products", href: "/products" },
-    { name: "Export Process", href: "/export-process" },
-    { name: "Contact", href: "/contact" },
+    { name: "Home", href: "#home" },
+    { name: "Products", href: "#products" },
+    { name: "About Us", href: "#about" },
+    { name: "Contact", href: "#contact" },
   ];
+
+  // Smooth scroll handler with offset
+  const handleSmoothScroll = (e, targetId) => {
+    e.preventDefault();
+    setIsOpen(false); // close mobile menu
+
+    const target = document.querySelector(targetId);
+    if (!target) return;
+
+    const headerOffset = 80; // adjust for navbar height
+    const elementPosition = target.getBoundingClientRect().top + window.scrollY;
+    const offsetPosition = elementPosition - headerOffset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/40 border-b border-white/20 shadow-lg transition-all duration-300">
@@ -17,7 +34,8 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16">
           {/* LOGO */}
           <a
-            href="/"
+            href="#home"
+            onClick={(e) => handleSmoothScroll(e, "#home")}
             className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
           >
             Export<span className="text-gray-800">Hub</span>
@@ -29,6 +47,7 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleSmoothScroll(e, link.href)}
                 className="relative text-gray-800 font-medium group transition-all duration-300"
               >
                 <span className="relative z-10 group-hover:text-indigo-600 transition">
@@ -38,7 +57,8 @@ const Navbar = () => {
               </a>
             ))}
             <a
-              href="/get-quote"
+              href="#get-quote"
+              onClick={(e) => handleSmoothScroll(e, "#get-quote")}
               className="ml-4 relative inline-block overflow-hidden rounded-xl bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 px-5 py-2 text-white font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] hover:scale-105"
             >
               <span className="relative z-10">Get Quote</span>
@@ -85,13 +105,15 @@ const Navbar = () => {
               <a
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleSmoothScroll(e, link.href)}
                 className="block text-gray-800 font-medium py-2 px-2 rounded-md hover:bg-gradient-to-r hover:from-indigo-100 hover:to-blue-50 hover:text-indigo-600 transition-all duration-200"
               >
                 {link.name}
               </a>
             ))}
             <a
-              href="/get-quote"
+              href="#get-quote"
+              onClick={(e) => handleSmoothScroll(e, "#get-quote")}
               className="block text-center bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 text-white font-semibold py-2 rounded-xl mt-2 hover:shadow-[0_0_15px_rgba(99,102,241,0.6)] hover:scale-105 transition-all duration-200"
             >
               Get Quote

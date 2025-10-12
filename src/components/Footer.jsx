@@ -47,15 +47,18 @@ const Footer = () => {
               📞 <span className="ml-1">+91 97129 35176</span>
             </li>
             <li>
-              ✉️ <a href="mailto:info@exporthub.com" className="hover:text-white">info@exporthub.com</a>
+              ✉️{" "}
+              <a href="mailto:info@exporthub.com" className="hover:text-white">
+                info@exporthub.com
+              </a>
             </li>
           </ul>
         </div>
 
-        {/* Social media */}
+        {/* Social media + Certifications */}
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
-          <div className="flex space-x-4 text-gray-400 text-2xl">
+          <div className="flex space-x-4 text-gray-400 text-2xl mb-6">
             {[FaFacebook, FaInstagram, FaLinkedin, FaTwitter].map((Icon, i) => (
               <a
                 key={i}
@@ -66,12 +69,42 @@ const Footer = () => {
               </a>
             ))}
           </div>
+
+          <h3 className="text-lg font-semibold text-white mb-3">Certifications</h3>
+          <div className="flex flex-wrap md:flex-nowrap items-center justify-center gap-4">
+            {[
+              {
+                src: "https://hampsbio.com/wp-content/uploads/2023/11/fssai-logo-transparent-free-png-e1700827593527-300x130.webp",
+                alt: "FSSAI Certified",
+              },
+              {
+                src: "https://hampsbio.com/wp-content/uploads/2023/11/download-removebg-preview.png",
+                alt: "FDA Approved",
+              },
+              {
+                src: "https://hampsbio.com/wp-content/uploads/2023/11/png-transparent-iso-9000-international-organization-for-standardization-iso-14000-management-system-iso-9001-text-logo-business-removebg-preview-300x182.png",
+                alt: "ISO Certified",
+              },
+            ].map((img, i) => (
+              <div
+                key={i}
+                className="bg-white/90 backdrop-blur-sm rounded-2xl shadow-lg hover:shadow-[0_0_20px_rgba(99,102,241,0.5)] p-3 transition-all duration-300 hover:-translate-y-1 hover:scale-105 flex justify-center items-center"
+              >
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  className="h-12 w-auto object-contain"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
       {/* Divider & copyright */}
       <div className="mt-10 pt-6 border-t border-gray-700 text-center text-gray-500 text-sm">
-        © {new Date().getFullYear()} <span className="text-white font-medium">ExportHub</span>. All rights reserved.
+        © {new Date().getFullYear()}{" "}
+        <span className="text-white font-medium">ExportHub</span>. All rights reserved.
       </div>
 
       {/* Floating glow orb */}

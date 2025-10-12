@@ -36,7 +36,7 @@ const features = [
 
 const WhyChooseUs = () => {
   return (
-    <section className="relative py-20 bg-gradient-to-b from-white to-indigo-50 overflow-hidden">
+    <section id="about" className="relative py-20 bg-gradient-to-b from-white to-indigo-50 overflow-hidden">
       {/* Decorative background blobs */}
       <div className="absolute -top-10 -left-10 w-72 h-72 bg-indigo-500/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-400/10 blur-3xl rounded-full"></div>

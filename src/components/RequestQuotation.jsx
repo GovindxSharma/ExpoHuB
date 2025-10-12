@@ -28,7 +28,7 @@ const RequestQuotation = () => {
   };
 
   return (
-    <section className="relative py-20 bg-gradient-to-b from-indigo-50 to-white overflow-hidden">
+    <section id="contact" className="relative py-20 bg-gradient-to-b from-indigo-50 to-white overflow-hidden">
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-indigo-400/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-500/10 blur-3xl rounded-full"></div>
 
