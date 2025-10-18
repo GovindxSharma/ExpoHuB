@@ -1,19 +1,15 @@
 import React from 'react'
-import Navbar from '../components/Navbar'
-import HeroSection from '../components/HeroSection'
-import WhyChooseUs from '../components/WhyChooseUs'
-import RequestQuotation from '../components/RequestQuotation'
-import Footer from '../components/Footer'
-import ProductCatalogue from '../components/ProductCatalogue'
+import HeroSection from '../components/home/HeroSection'
+import WhyChooseUs from '../components/home/WhyChooseUs'
+import RequestQuotation from '../components/home/RequestQuotation'
+import ProductCatalogue from '../components/home/ProductCatalogue'
 
 const Homepage = () => {
   return (<>
-    <Navbar/>
     <HeroSection/>
     <ProductCatalogue/>
     <WhyChooseUs/>
     <RequestQuotation/>
-    <Footer/>
     </>
 
 

@@ -1,13 +1,17 @@
+// src/components/ProductCard.jsx
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
       {/* Product Card */}
       <div
-        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:-translate-y-1 flex flex-col justify-between h-full"
+        onClick={() => navigate(`/products/${product.id}`)}
+        className="group bg-white rounded-2xl shadow-md hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:-translate-y-1 flex flex-col justify-between h-full cursor-pointer"
       >
         {/* Image */}
         <div className="relative flex items-center justify-center bg-gray-50 h-56 overflow-hidden">
@@ -20,7 +24,6 @@ const ProductCard = ({ product }) => {
 
         {/* Card Body */}
         <div className="p-5 flex flex-col flex-grow justify-between">
-          {/* Title + Description */}
           <div>
             <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-indigo-600 transition-colors duration-300">
               {product.name}
@@ -30,16 +33,15 @@ const ProductCard = ({ product }) => {
             </p>
           </div>
 
-          {/* Bottom Section */}
           <div className="flex items-center justify-between mt-4">
-            {/* Price / Quantity from product props */}
-            <span className="text-gray-800 font-semibold text-sm">
+            <span className="text-indigo-600 font-semibold">
               ₹{product.price} / {product.qty}
             </span>
-
-            {/* Customize Button */}
             <button
-              onClick={() => setIsModalOpen(true)}
+              onClick={(e) => {
+                e.stopPropagation(); // prevent card click
+                setIsModalOpen(true);
+              }}
               className="px-3 py-2 text-sm font-medium border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition-all duration-300"
             >
               Customize
@@ -79,7 +81,7 @@ const ProductCard = ({ product }) => {
               {/* Quantity */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
-                  Quantity (lbs)
+                  Quantity (kgs)
                 </label>
                 <input
                   type="number"
@@ -88,7 +90,7 @@ const ProductCard = ({ product }) => {
                   className="w-full border border-gray-300 rounded-lg p-2 focus:ring-indigo-500 focus:border-indigo-500"
                 />
                 <p className="text-xs text-gray-500 mt-1">
-                  Minimum order: 10 lbs
+                  Minimum order: 10 kgs
                 </p>
               </div>
 
