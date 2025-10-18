@@ -1,12 +1,42 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 const HeroSection = () => {
-  // Smooth scroll handler (same as navbar)
+  const [current, setCurrent] = useState(0);
+  
+  const slides = [
+    {
+      id: 1,
+      img: "https://augasonfarms.com/cdn/shop/articles/freeze-dried-fruits-nutritious-tasty-and-easy-to-take-anywhere-395723_1296x.jpg?v=1744390505",
+      title: "Explore Premium Freeze-Dried Delights",
+      desc: "Sourced from nature, perfected for export — freshness you can taste.",
+    },
+    {
+      id: 2,
+      img: "https://images.unsplash.com/photo-1593642532744-d377ab507dc8?q=80&w=1470&auto=format&fit=crop",
+      title: "Global Exports, Local Excellence",
+      desc: "Delivering quality products trusted by clients across continents.",
+    },
+    {
+      id: 3,
+      img: "https://images.unsplash.com/photo-1578575437130-527eed3abbec?q=80&w=1470&auto=format&fit=crop",
+      title: "Your Reliable Export Partner",
+      desc: "Efficiency, quality, and trust — built into every shipment.",
+    },
+  ];
+  
+
+  // Auto-slide every 5s
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [slides.length]);
+
   const handleScroll = (id) => {
     const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    if (element) element.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   return (
@@ -14,13 +44,12 @@ const HeroSection = () => {
       id="home"
       className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-indigo-100"
     >
-      {/* Decorative gradient glow */}
+      {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-[-10%] right-[-10%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-gradient-to-r from-indigo-500 via-blue-400 to-cyan-300 rounded-full blur-[120px] opacity-40 animate-pulse"></div>
         <div className="absolute bottom-[-10%] left-[-10%] w-[300px] md:w-[400px] h-[300px] md:h-[400px] bg-gradient-to-r from-cyan-400 via-blue-500 to-indigo-600 rounded-full blur-[130px] opacity-40 animate-pulse"></div>
       </div>
 
-      {/* Content */}
       <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-12 md:py-20 flex flex-col-reverse md:flex-row items-center gap-10">
         {/* Left Text */}
         <div className="flex-1 text-center md:text-left z-10">
@@ -54,18 +83,50 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Right Image */}
-        <div className="flex-1 w-full relative z-10">
-          <div className="relative w-full h-64 sm:h-80 md:h-[450px] rounded-2xl overflow-hidden shadow-xl group">
-            <img
-              src="https://augasonfarms.com/cdn/shop/articles/freeze-dried-fruits-nutritious-tasty-and-easy-to-take-anywhere-395723_1296x.jpg?v=1744390505"
-              alt="Product Catalogue"
-              className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.75] scale-105 transition-transform duration-[3000ms] ease-out group-hover:scale-110"
-            />
+        {/* Right Image Carousel */}
+        <div className="flex-1 w-full relative z-10 group">
+          <div className="relative w-full h-64 sm:h-80 md:h-[450px] rounded-2xl overflow-hidden shadow-2xl">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={slides[current].id}
+                src={slides[current].img}
+                alt={slides[current].title}
+                initial={{ opacity: 0, scale: 1.05 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.05 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.75]"
+              />
+            </AnimatePresence>
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+
+            {/* Text overlay */}
+            <div className="absolute bottom-6 left-6 text-white">
+              <h2 className="text-2xl md:text-3xl font-bold drop-shadow-md">
+                {slides[current].title}
+              </h2>
+              <p className="text-sm md:text-base opacity-90 mt-1">
+                {slides[current].desc}
+              </p>
+            </div>
           </div>
 
-          {/* Glowing Accent */}
+          {/* Dots */}
+          <div className="flex justify-center gap-2 mt-4">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  i === current
+                    ? "bg-gradient-to-r from-indigo-600 to-cyan-400 scale-125"
+                    : "bg-gray-300 hover:bg-gray-400"
+                }`}
+              ></button>
+            ))}
+          </div>
+
+          {/* Accent Glow */}
           <div className="absolute -bottom-5 -left-5 w-28 h-28 sm:w-36 sm:h-36 bg-gradient-to-r from-indigo-600 to-cyan-400 rounded-full blur-3xl opacity-50 animate-pulse"></div>
         </div>
       </div>
