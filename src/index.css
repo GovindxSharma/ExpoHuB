@@ -1,1 +1,10 @@
+/* Import Noto Sans first (must come before all Tailwind layers) */
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+/* Tailwind layers */
 @import "tailwindcss";
+/* Apply Noto Sans across the whole app */
+body {
+  font-family: 'Noto Sans', sans-serif;
+  @apply text-gray-800 bg-white;
+}

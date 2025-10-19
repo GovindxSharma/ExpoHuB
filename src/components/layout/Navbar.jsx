@@ -32,14 +32,13 @@ const Navbar = () => {
             to="/"
             className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
           >
-            Export<span className="text-gray-800">Hub</span>
+            Indus<span className="text-gray-800">Meridian</span>
           </Link>
 
           {/* Desktop Links */}
           <div className="hidden md:flex space-x-8 items-center">
             {navLinks.map((link) =>
               link.path ? (
-                // React Router Links
                 <Link
                   key={link.name}
                   to={link.path}
@@ -53,7 +52,6 @@ const Navbar = () => {
                   <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
               ) : (
-                // Smooth Scroll Links
                 <a
                   key={link.name}
                   href={link.href}
@@ -67,15 +65,6 @@ const Navbar = () => {
                 </a>
               )
             )}
-
-            {/* CTA */}
-            <a
-              href="#get-quote"
-              onClick={(e) => handleSmoothScroll(e, "#get-quote")}
-              className="ml-4 relative inline-block overflow-hidden rounded-xl bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 px-5 py-2 text-white font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(99,102,241,0.6)] hover:scale-105"
-            >
-              <span className="relative z-10">Get Quote</span>
-            </a>
           </div>
 
           {/* Mobile Menu Button */}
