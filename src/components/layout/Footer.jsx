@@ -9,12 +9,14 @@ const Footer = () => {
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-indigo-400/20 blur-3xl rounded-full"></div>
 
       <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
-        {/* Logo & tagline */}
-        <div>
-          <h2 className="text-2xl font-extrabold text-white tracking-wide mb-3">
-            Export<span className="text-indigo-400">Hub</span>
-          </h2>
-          <p className="text-gray-400 leading-relaxed">
+        {/* ✅ Logo & tagline */}
+        <div className="flex flex-col items-start">
+          <img
+            src="/logo.png"
+            alt="ExportHub Logo"
+            className="w-36 h-24 sm:w-40 sm:h-28 md:w-44 md:h-32 object-contain mb-3"
+          />
+          <p className="text-gray-400 leading-relaxed max-w-xs">
             Connecting global buyers and suppliers through trust, quality, and innovation.
           </p>
         </div>
@@ -23,16 +25,18 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Quick Links</h3>
           <ul className="space-y-2">
-            {["Home", "Products", "About Us", "Contact", "Request Quotation"].map((link, i) => (
-              <li key={i}>
-                <a
-                  href="#"
-                  className="text-gray-400 hover:text-white transition-colors duration-200"
-                >
-                  {link}
-                </a>
-              </li>
-            ))}
+            {["Home", "Products", "About Us", "Contact", "Request Quotation"].map(
+              (link, i) => (
+                <li key={i}>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-white transition-colors duration-200"
+                  >
+                    {link}
+                  </a>
+                </li>
+              )
+            )}
           </ul>
         </div>
 
@@ -40,12 +44,8 @@ const Footer = () => {
         <div>
           <h3 className="text-lg font-semibold text-white mb-4">Get In Touch</h3>
           <ul className="space-y-3 text-gray-400">
-            <li>
-              📍 <span className="ml-1">Ahmedabad, Gujarat, India</span>
-            </li>
-            <li>
-              📞 <span className="ml-1">+91 97129 35176</span>
-            </li>
+            <li>📍 <span className="ml-1">Ahmedabad, Gujarat, India</span></li>
+            <li>📞 <span className="ml-1">+91 97129 35176</span></li>
             <li>
               ✉️{" "}
               <a href="mailto:info@exporthub.com" className="hover:text-white">

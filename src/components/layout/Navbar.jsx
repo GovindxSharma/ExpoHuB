@@ -26,13 +26,17 @@ const Navbar = () => {
   return (
     <nav className="sticky top-0 z-50 backdrop-blur-md bg-white/40 border-b border-white/20 shadow-lg transition-all duration-300">
       <div className="max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+        <div className="flex justify-between items-center h-20">
+          {/* ✅ Logo Only */}
           <Link
             to="/"
-            className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent hover:scale-105 transition-transform duration-300"
+            className="flex items-center hover:scale-105 transition-transform duration-300"
           >
-            Indus<span className="text-gray-800">Meridian</span>
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="w-36 h-24 sm:w-40 sm:h-28 md:w-44 md:h-32 object-contain"
+            />
           </Link>
 
           {/* Desktop Links */}
@@ -73,7 +77,7 @@ const Navbar = () => {
             className="md:hidden p-2 rounded-md text-gray-700 hover:text-indigo-600 transition"
           >
             <svg
-              className="h-6 w-6"
+              className="h-7 w-7"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
