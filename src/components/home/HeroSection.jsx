@@ -15,7 +15,7 @@ const HeroSection = () => {
       id: 2,
       img: "https://hips.hearstapps.com/hmg-prod/images/the-modern-concept-of-wellness-and-veganism-jars-of-royalty-free-image-1666018899.jpg",
       title: "Nut Butters: Pure, Creamy, and Wholesome",
-      desc: "Harvested from nature and refined with precision to deliver freshness and quality in every jar..",
+      desc: "Harvested from nature and refined with precision to deliver freshness and quality in every jar.",
     },
     {
       id: 3,
@@ -25,7 +25,6 @@ const HeroSection = () => {
     },
   ];
 
-  // Auto-slide every 6s
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -43,32 +42,32 @@ const HeroSection = () => {
       id="home"
       className="relative overflow-hidden bg-gradient-to-br from-white via-blue-50 to-indigo-100"
     >
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-14 md:py-20 flex flex-col-reverse md:flex-row items-center gap-10">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 py-10 sm:py-16 md:py-20 flex flex-col-reverse md:flex-row items-center gap-10 md:gap-16">
         {/* Left Text */}
         <div className="flex-1 text-center md:text-left z-10">
-          <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
+          <h1 className="text-2xl sm:text-4xl md:text-6xl font-extrabold text-gray-900 leading-tight">
             Discover Our{" "}
             <span className="bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 bg-clip-text text-transparent">
               Premium Healthy Snack Catalogue
             </span>
           </h1>
 
-          <p className="mt-4 text-gray-600 text-base sm:text-lg md:w-4/5 mx-auto md:mx-0">
+          <p className="mt-4 text-gray-600 text-sm sm:text-base md:text-lg leading-relaxed max-w-lg mx-auto md:mx-0">
             Partner with a brand that values trust and quality. Our snacks are made from carefully
             sourced ingredients, processed with precision, and packed using advanced food-grade
             technology to ensure freshness and long shelf life.
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+          <div className="mt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center md:justify-start">
             <button
               onClick={() => handleScroll("products")}
-              className="bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 text-white font-semibold px-6 py-3 rounded-xl hover:opacity-90 transition-all duration-300"
+              className="bg-gradient-to-r from-indigo-600 via-blue-500 to-cyan-400 text-white font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl hover:opacity-90 transition-all duration-300 text-sm sm:text-base"
             >
               Browse Catalogue
             </button>
             <button
               onClick={() => handleScroll("contact")}
-              className="border border-indigo-600 text-indigo-700 font-semibold px-6 py-3 rounded-xl hover:bg-indigo-50 transition-all duration-300"
+              className="border border-indigo-600 text-indigo-700 font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl hover:bg-indigo-50 transition-all duration-300 text-sm sm:text-base"
             >
               Get in Touch
             </button>
@@ -76,8 +75,8 @@ const HeroSection = () => {
         </div>
 
         {/* Carousel */}
-        <div className="flex-1 relative z-10">
-          <div className="relative w-full h-64 sm:h-80 md:h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200">
+        <div className="flex-1 relative z-10 w-full">
+          <div className="relative w-full h-52 xs:h-64 sm:h-72 md:h-[420px] rounded-2xl overflow-hidden shadow-xl bg-gray-200">
             <AnimatePresence>
               {slides.map(
                 (slide, index) =>
@@ -89,15 +88,15 @@ const HeroSection = () => {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      transition={{ duration: 1.5, ease: "easeInOut" }}
+                      transition={{ duration: 1.2, ease: "easeInOut" }}
                       className="absolute inset-0 w-full h-full object-cover object-center brightness-[0.8]"
                     />
                   )
               )}
             </AnimatePresence>
 
-            {/* Text Overlay (stays visible, fades smoothly with slide) */}
-            <div className="absolute bottom-5 left-5 right-5 text-white drop-shadow-md">
+            {/* Text Overlay */}
+            <div className="absolute bottom-3 sm:bottom-5 left-4 right-4 sm:left-6 sm:right-6 text-white drop-shadow-md text-center sm:text-left">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={slides[current].id}
@@ -106,8 +105,10 @@ const HeroSection = () => {
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
-                  <h2 className="text-2xl md:text-3xl font-bold">{slides[current].title}</h2>
-                  <p className="text-sm md:text-base opacity-90 mt-1">
+                  <h2 className="text-lg sm:text-2xl md:text-3xl font-bold">
+                    {slides[current].title}
+                  </h2>
+                  <p className="text-xs sm:text-sm md:text-base opacity-90 mt-1">
                     {slides[current].desc}
                   </p>
                 </motion.div>
@@ -116,12 +117,12 @@ const HeroSection = () => {
           </div>
 
           {/* Dots */}
-          <div className="flex justify-center gap-2 mt-4">
+          <div className="flex justify-center gap-2 mt-3 sm:mt-4">
             {slides.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setCurrent(i)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-2.5 h-2.5 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
                   i === current
                     ? "bg-gradient-to-r from-indigo-600 to-cyan-400 scale-125"
                     : "bg-gray-300 hover:bg-gray-400"
