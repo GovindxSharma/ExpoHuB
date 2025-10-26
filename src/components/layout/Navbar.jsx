@@ -16,18 +16,19 @@ const Navbar = () => {
 
   return (
     <nav className="sticky top-0 z-50 bg-[#f4dfc4] shadow-md transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-5 lg:px-10">
-        <div className="flex justify-between items-center h-20">
+      <div className="max-w-7xl mx-auto">
+        {/* Flex container: center logo on mobile, space-between on desktop */}
+        <div className="flex justify-center md:justify-between items-center h-20 w-full px-5 lg:px-10">
           {/* Logo */}
           <Link
             to="/"
             className="flex items-center font-[Playfair_Display] hover:scale-105 transition-transform duration-300"
           >
-          <img
-          src="/logo.png"
-          alt="Logo"
-          className="w-56 h-28 sm:w-44 sm:h-24 md:w-48 md:h-28 lg:w-52 lg:h-32 object-contain"
-        />
+            <img
+              src="/logo.png"
+              alt="Logo"
+              className="w-56 h-28 sm:w-60 sm:h-32 md:w-48 md:h-28 lg:w-52 lg:h-32 object-contain"
+            />
           </Link>
 
           {/* Desktop Links */}
@@ -37,9 +38,7 @@ const Navbar = () => {
                 key={link.name}
                 to={link.path}
                 className={`relative font-medium text-[#3A3A3A] transition-all duration-300 after:absolute after:bottom-[-3px] after:left-0 after:h-[2px] after:w-0 after:bg-[#C66A1F] hover:after:w-full hover:text-[#C66A1F] ${
-                  isActive(link)
-                    ? "text-[#C66A1F] after:w-full"
-                    : "after:transition-all after:duration-300"
+                  isActive(link) ? "text-[#C66A1F] after:w-full" : "after:transition-all after:duration-300"
                 }`}
               >
                 {link.name}
@@ -50,20 +49,10 @@ const Navbar = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(true)}
-            className="md:hidden p-2 rounded-md text-[#5C3A00] hover:text-[#C66A1F] transition"
+            className="md:hidden p-2 rounded-md text-[#5C3A00] hover:text-[#C66A1F] transition absolute right-5"
           >
-            <svg
-              className="h-7 w-7"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M4 6h16M4 12h16M4 18h16"
-              />
+            <svg className="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
         </div>
