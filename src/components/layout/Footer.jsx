@@ -60,14 +60,14 @@ const Footer = () => {
         <div className="flex flex-col justify-start text-left">
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Get In Touch</h3>
           <ul className="space-y-2 text-[#3A3A3A]/80 text-sm sm:text-base">
-            <li>📞 +91 97129 35176</li>
+            <li>📞 +91 81040 27533</li>
             <li>
               ✉️{" "}
               <a
-                href="mailto:govindsharma2839@gmail.com"
+                href="mailto:enquiry@skfoodz.in"
                 className="hover:text-[#C66A1F] transition-colors duration-200"
               >
-                govindsharma2839@gmail.com
+                enquiry@skfoodz.in
               </a>
             </li>
           </ul>
@@ -77,15 +77,23 @@ const Footer = () => {
         <div className="flex flex-col justify-start text-left">
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Follow Us</h3>
           <div className="flex space-x-4 text-[#3A3A3A]/80 text-2xl mb-6">
-            {[FaFacebook, FaInstagram, FaLinkedin, FaTwitter].map((Icon, i) => (
-              <a
-                key={i}
-                href="#"
-                className="hover:text-[#C66A1F] transition-colors duration-300"
-              >
-                <Icon />
-              </a>
-            ))}
+            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
+              <FaFacebook />
+            </a>
+            <a
+              href="https://www.instagram.com/sk_foodz.in"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#C66A1F] transition-colors duration-300"
+            >
+              <FaInstagram />
+            </a>
+            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
+              <FaLinkedin />
+            </a>
+            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
+              <FaTwitter />
+            </a>
           </div>
 
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Certifications</h3>

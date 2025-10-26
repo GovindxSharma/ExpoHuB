@@ -52,22 +52,22 @@ const ContactPage = () => {
               Contact Information
             </h3>
             <p className="text-[#5C3A00]/90 mb-2">
-              <strong>Govind Sharma</strong>
+              <strong>Saim Khoja</strong>
               <br />
               <span className="text-sm text-[#5C3A00]/70">Founder, SK Foodz</span>
             </p>
             <p className="text-[#5C3A00]/90">
-              📞 <span className="font-medium">+91 97129 35176</span>
+              📞 <span className="font-medium">+91 981040 27533</span>
               <br />
               📧{" "}
               <a
                 href="mailto:govindsharma2839@gmail.com"
                 className="text-[#C66A1F] hover:underline"
               >
-                govindsharma2839@gmail.com
+                enquiry@skfoodz.in
               </a>
             </p>
-            <p className="mt-4 text-sm text-[#5C3A00]/70">📍 Ahmedabad, India</p>
+            <p className="mt-4 text-sm text-[#5C3A00]/70"> Ahmedabad, India</p>
           </div>
         </div>
 
