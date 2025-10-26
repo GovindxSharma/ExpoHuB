@@ -18,7 +18,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="relative bg-gradient-to-r from-[#F5E9DA] via-[#C66A1F]/20 to-[#F5E9DA] text-[#3A3A3A] pt-14 pb-8 overflow-hidden">
+    <footer className="relative bg-[#efd0b0] text-[#3A3A3A] pt-14 pb-8 overflow-hidden">
       {/* Warm Glows */}
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#C66A1F]/20 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#5C3A00]/20 blur-3xl rounded-full"></div>

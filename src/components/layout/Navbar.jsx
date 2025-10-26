@@ -15,7 +15,7 @@ const Navbar = () => {
   const isActive = (link) => location.pathname === link.path;
 
   return (
-    <nav className="sticky top-0 z-50 bg-[#F5E9DA] shadow-md transition-all duration-300">
+    <nav className="sticky top-0 z-50 bg-[#f4dfc4] shadow-md transition-all duration-300">
       <div className="max-w-7xl mx-auto px-5 lg:px-10">
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
@@ -23,11 +23,11 @@ const Navbar = () => {
             to="/"
             className="flex items-center font-[Playfair_Display] hover:scale-105 transition-transform duration-300"
           >
-            <img
-              src="/logo.png"
-              alt="Logo"
-              className="w-40 h-20 sm:w-44 sm:h-24 md:w-48 md:h-28 object-contain"
-            />
+          <img
+          src="/logo.png"
+          alt="Logo"
+          className="w-56 h-28 sm:w-44 sm:h-24 md:w-48 md:h-28 lg:w-52 lg:h-32 object-contain"
+        />
           </Link>
 
           {/* Desktop Links */}
