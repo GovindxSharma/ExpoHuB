@@ -1,10 +1,78 @@
-/* Import Noto Sans first (must come before all Tailwind layers) */
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+/* ================================
+   🌿 SK Foodz Theme Global Styles
+   ================================ */
+
+/* Import fonts first */
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Lato:wght@400;500;700&display=swap");
 
 /* Tailwind layers */
 @import "tailwindcss";
-/* Apply Noto Sans across the whole app */
+
+/* Root Theme Variables */
+:root {
+  --primary-color: #5C3A00;    /* Earth Brown */
+  --secondary-color: #C66A1F;  /* Rust Orange */
+  --bg-beige: #F5E9DA;         /* Warm Beige */
+  --text-dark: #3A3A3A;        /* Charcoal Gray */
+  --text-light: #FFFFFF;       /* Soft White */
+}
+
+/* Global Body Styles */
 body {
-  font-family: 'Noto Sans', sans-serif;
-  @apply text-gray-800 bg-white;
+  @apply bg-[#F5E9DA] text-[#3A3A3A];
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+  letter-spacing: 0.2px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+/* Links & Buttons */
+a, button {
+  transition: all 0.3s ease;
+}
+
+a:hover,
+button:hover {
+  color: var(--secondary-color);
+}
+
+/* Buttons (Rust Orange) */
+.btn-primary {
+  @apply px-4 py-2 rounded-full text-white font-medium;
+  background-color: var(--secondary-color);
+}
+
+.btn-primary:hover {
+  background-color: #A95818; /* darker orange */
+}
+
+/* Product Cards */
+.product-card {
+  @apply bg-white rounded-2xl shadow-md p-4 transition-transform duration-300;
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+}
+
+/* Section Dividers */
+.section {
+  @apply py-12 px-4 md:px-12;
+  background-color: var(--bg-beige);
+}
+
+/* Footer */
+footer {
+  background-color: var(--primary-color);
+  color: var(--text-light);
+}
+
+footer a:hover {
+  color: var(--secondary-color);
 }

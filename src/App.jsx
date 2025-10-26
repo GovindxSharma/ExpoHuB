@@ -5,13 +5,15 @@ import Homepage from "./pages/Homepage";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetailsPage from "./pages/ProductDetailsPage";
 import Footer from "./components/layout/Footer";
-import ScrollToTop from "./components/ScrollToTop";
+// import ScrollToTop from "./components/ScrollToTop";
+import ContactPage from "./pages/ContactPage";
+import AboutPage from "./pages/AboutPage";
 
 const App = () => {
   return (
     <Router>
       {/* Scrolls to top on every route change */}
-      <ScrollToTop /> 
+   
 
       <Navbar />
 
@@ -19,6 +21,8 @@ const App = () => {
         <Route path="/" element={<Homepage />} />
         <Route path="/products" element={<ProductsPage />} />
         <Route path="/products/:id" element={<ProductDetailsPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
 
       <Footer />
