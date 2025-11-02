@@ -23,9 +23,11 @@ const Footer = () => {
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#C66A1F]/20 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#5C3A00]/20 blur-3xl rounded-full"></div>
 
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16">
+      {/* Footer Grid */}
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16 items-start">
+        
         {/* Logo & tagline */}
-        <div className="flex flex-col items-start text-left">
+        <div className="flex flex-col items-start justify-start text-left h-full">
           <img
             src="/logo.png"
             alt="SK Foodz Logo"
@@ -38,8 +40,10 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col justify-start text-left">
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Quick Links</h3>
+        <div className="flex flex-col items-start justify-start text-left h-full">
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
+            Quick Links
+          </h3>
           <ul className="space-y-2">
             {["Home", "Products", "About Us", "Contact", "Request Quotation"].map(
               (link, i) => (
@@ -57,8 +61,10 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col justify-start text-left">
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Get In Touch</h3>
+        <div className="flex flex-col items-start justify-start text-left h-full">
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
+            Get In Touch
+          </h3>
           <ul className="space-y-2 text-[#3A3A3A]/80 text-sm sm:text-base">
             <li>📞 +91 81040 27533</li>
             <li>
@@ -74,10 +80,15 @@ const Footer = () => {
         </div>
 
         {/* Social Media + Certifications */}
-        <div className="flex flex-col justify-start text-left">
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Follow Us</h3>
+        <div className="flex flex-col items-start justify-start text-left h-full">
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
+            Follow Us
+          </h3>
           <div className="flex space-x-4 text-[#3A3A3A]/80 text-2xl mb-6">
-            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
+            <a
+              href="#"
+              className="hover:text-[#C66A1F] transition-colors duration-300"
+            >
               <FaFacebook />
             </a>
             <a
@@ -88,15 +99,23 @@ const Footer = () => {
             >
               <FaInstagram />
             </a>
-            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
+            <a
+              href="#"
+              className="hover:text-[#C66A1F] transition-colors duration-300"
+            >
               <FaLinkedin />
             </a>
-            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
+            <a
+              href="#"
+              className="hover:text-[#C66A1F] transition-colors duration-300"
+            >
               <FaTwitter />
             </a>
           </div>
 
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Certifications</h3>
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
+            Certifications
+          </h3>
           <div className="flex flex-wrap gap-3">
             {certifications.map((cert, i) => (
               <div
@@ -117,7 +136,8 @@ const Footer = () => {
       {/* Divider */}
       <div className="mt-10 pt-5 border-t border-[#3A3A3A]/20 text-center text-[#3A3A3A]/70 text-xs sm:text-sm">
         © {new Date().getFullYear()}{" "}
-        <span className="text-[#5C3A00] font-medium">SK Foodz</span>. All rights reserved.
+        <span className="text-[#5C3A00] font-medium">SK Foodz</span>. All rights
+        reserved.
       </div>
 
       {/* Floating glow */}
