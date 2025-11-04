@@ -7,8 +7,7 @@ const ProductsPage = () => {
 
   // Extract all unique categories dynamically from products
   const categories = useMemo(() => {
-    const unique = ["All", ...new Set(productsData.map((p) => p.category))];
-    return unique;
+    return ["All", ...new Set(productsData.map((p) => p.category))];
   }, []);
 
   // Filter products based on selected category
@@ -16,6 +15,15 @@ const ProductsPage = () => {
     selectedCategory === "All"
       ? productsData
       : productsData.filter((p) => p.category === selectedCategory);
+
+  // Handle click — always allows "All" to reset filtering
+  const handleCategoryClick = (cat) => {
+    if (cat === "All") {
+      setSelectedCategory("All"); // reset to full list
+    } else {
+      setSelectedCategory(cat);
+    }
+  };
 
   return (
     <section className="relative max-w-7xl mx-auto px-5 py-16">
@@ -32,11 +40,11 @@ const ProductsPage = () => {
         {categories.map((cat) => (
           <button
             key={cat}
-            onClick={() => setSelectedCategory(cat)}
+            onClick={() => handleCategoryClick(cat)}
             className={`px-5 py-2 rounded-full font-medium border transition-all duration-300 ${
               selectedCategory === cat
-                ? "bg-[#C66A1F] text-white border-[#C66A1F]"
-                : "border-[#C66A1F] text-[#5C3A00] hover:bg-[#C66A1F]/10"
+                ? "bg-[#C66A1F] !text-white border-[#C66A1F] shadow-md scale-105"
+                : "border-[#C66A1F] text-[#5C3A00] hover:text-[#C66A1F] hover:bg-[#C66A1F]/10"
             }`}
           >
             {cat}
@@ -50,7 +58,10 @@ const ProductsPage = () => {
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
           {filteredProducts.map((product) => (
-            <ProductCard key={`${product.category}-${product.id}`} product={product} />
+            <ProductCard
+              key={`${product.category}-${product.id}`}
+              product={product}
+            />
           ))}
         </div>
       )}

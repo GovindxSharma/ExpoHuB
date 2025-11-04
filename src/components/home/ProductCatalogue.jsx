@@ -44,16 +44,13 @@ const ProductCatalogue = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2.5 rounded-full font-[Lato] font-semibold text-sm md:text-base transition-all duration-300 relative ${
+                className={`px-5 py-2.5 rounded-full font-[Lato] font-semibold text-sm md:text-base transition-all duration-300 ${
                   selectedCategory === cat
-                    ? "bg-gradient-to-r from-[#C66A1F] to-[#5C3A00] text-white shadow-lg scale-105"
+                    ? "bg-gradient-to-r from-[#C66A1F] to-[#5C3A00] !text-white shadow-lg scale-105"
                     : "text-[#5C3A00] hover:text-[#C66A1F] hover:bg-[#C66A1F]/10"
                 }`}
               >
                 {cat}
-                {selectedCategory === cat && (
-                  <span className="absolute inset-x-5 -bottom-[6px] h-[2px] bg-[#C66A1F] rounded-full"></span>
-                )}
               </button>
             ))}
           </div>
