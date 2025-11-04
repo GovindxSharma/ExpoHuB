@@ -9,6 +9,9 @@ import Footer from "./components/layout/Footer";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
 
+//testing
+
+
 const App = () => {
   return (
     <Router>
