@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../product/ProductCard";
-
-// Import all datasets
-import nutButters from "../../data/nutbutter";
-import driedFruits from "../../data/driedfruits";
-import muesliBars from "../../data/mueslibars";
+import products from "../../data/products";
 
 const categories = [
   "Freeze-Dried Fruits",
@@ -17,21 +13,10 @@ const ProductCatalogue = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
 
   useEffect(() => {
-    // Dynamically switch dataset based on category
-    switch (selectedCategory) {
-      case "Nut Butters":
-        setFilteredProducts(nutButters);
-        break;
-      case "Freeze-Dried Fruits":
-        setFilteredProducts(driedFruits);
-        break;
-      case "Muesli and Protein Bars":
-        setFilteredProducts(muesliBars);
-        break;
-      default:
-        setFilteredProducts([]);
-        break;
-    }
+    const filtered = products.filter(
+      (p) => p.category === selectedCategory
+    );
+    setFilteredProducts(filtered);
   }, [selectedCategory]);
 
   return (

@@ -1,30 +1,21 @@
-import React, { useEffect, useState } from "react";
-import driedFruits from "../data/driedfruits";
-import nutButters from "../data/nutbutter";
-import muesliBars from "../data/mueslibars";
+import React, { useState, useMemo } from "react";
+import productsData from "../data/products";
 import ProductCard from "../components/product/ProductCard";
 
 const ProductsPage = () => {
-  const [products, setProducts] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  useEffect(() => {
-    // Combine all categories
-    const allProducts = [
-      ...driedFruits.map((p) => ({ ...p, category: "Freeze-Dried Fruits" })),
-      ...nutButters.map((p) => ({ ...p, category: "Nut Butters" })),
-      ...muesliBars.map((p) => ({ ...p, category: "Muesli & Bars" })),
-    ];
-    setProducts(allProducts);
+  // Extract all unique categories dynamically from products
+  const categories = useMemo(() => {
+    const unique = ["All", ...new Set(productsData.map((p) => p.category))];
+    return unique;
   }, []);
 
-  const categories = ["All", "Freeze-Dried Fruits", "Nut Butters", "Muesli & Bars"];
-
-  // Filtered products
+  // Filter products based on selected category
   const filteredProducts =
     selectedCategory === "All"
-      ? products
-      : products.filter((p) => p.category === selectedCategory);
+      ? productsData
+      : productsData.filter((p) => p.category === selectedCategory);
 
   return (
     <section className="relative max-w-7xl mx-auto px-5 py-16">
@@ -53,6 +44,7 @@ const ProductsPage = () => {
         ))}
       </div>
 
+      {/* Product Grid */}
       {filteredProducts.length === 0 ? (
         <p className="text-center text-[#5C3A00]/80">No products available.</p>
       ) : (
