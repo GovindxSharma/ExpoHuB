@@ -57,7 +57,7 @@ const ContactPage = () => {
               <span className="text-sm text-[#5C3A00]/70">Founder, SK Foodz</span>
             </p>
             <p className="text-[#5C3A00]/90">
-              📞 <span className="font-medium">+91 981040 27533</span>
+              📞 <span className="font-medium">+91 81040 27533</span>
               <br />
               📧{" "}
               <a

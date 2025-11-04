@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [hovered, setHovered] = useState(false);
   const navigate = useNavigate();
 
   return (
@@ -11,12 +12,14 @@ const ProductCard = ({ product }) => {
       {/* Product Card */}
       <div
         onClick={() => navigate(`/products/${product.id}`)}
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         className="group bg-[#FFFFFF] rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-[#F5E9DA] hover:-translate-y-1 flex flex-col justify-between h-full cursor-pointer"
       >
         {/* Image */}
         <div className="relative flex items-center justify-center bg-[#F5E9DA] h-56 overflow-hidden">
           <img
-            src={product.image}
+            src={hovered && product.images?.[1] ? product.images[1] : product.images?.[0]}
             alt={product.name}
             className="max-h-52 w-auto object-contain transition-transform duration-700 group-hover:scale-105"
           />
@@ -33,10 +36,7 @@ const ProductCard = ({ product }) => {
             </p>
           </div>
 
-          <div className="flex items-center justify-between mt-4">
-            <span className="text-[#C66A1F] font-semibold">
-              ₹{product.price} / {product.qty}
-            </span>
+          <div className="flex justify-end mt-4">
             <button
               onClick={(e) => {
                 e.stopPropagation();

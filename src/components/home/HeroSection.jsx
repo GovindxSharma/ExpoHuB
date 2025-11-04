@@ -8,7 +8,7 @@ const HeroSection = () => {
     {
       id: 1,
       img: "https://augasonfarms.com/cdn/shop/articles/freeze-dried-fruits-nutritious-tasty-and-easy-to-take-anywhere-395723_1296x.jpg?v=1744390505",
-      title: "Explore Premium Freeze-Dried Delights",
+      title: "Freeze-Dried Fruits: Nature's Goodness, Sealed Fresh",
       desc: "Sourced from nature, perfected for export — freshness you can taste.",
     },
     {

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import productsData from "../data/products";
+import productsData from "../data/driedfruits";
 import { Share2, PackageCheck, ArrowLeft } from "lucide-react";
 
 const ProductDetailsPage = () => {
@@ -49,32 +49,35 @@ const ProductDetailsPage = () => {
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
         {/* ---------- LEFT IMAGE ---------- */}
         <div className="lg:sticky top-24 self-start">
-          <div className="bg-[#F5E9DA] rounded-3xl p-5 sm:p-6 border border-[#C66A1F]/20 shadow-sm">
-            <img
-              src={selectedImage}
-              alt={product.name}
-              className="rounded-2xl object-contain w-full h-[350px] sm:h-[420px] md:h-[500px] transition-transform duration-500 hover:scale-105"
-            />
-          </div>
+          <div className="relative flex">
+            {/* Thumbnail column */}
+            {product.images?.length > 1 && (
+              <div className="flex flex-col gap-3 mr-3">
+                {product.images.slice(0, 4).map((img, i) => (
+                  <img
+                    key={i}
+                    src={img}
+                    alt={`thumb-${i}`}
+                    onClick={() => setSelectedImage(img)}
+                    className={`w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl border-2 cursor-pointer transition-all duration-300 ${
+                      selectedImage === img
+                        ? "border-[#C66A1F] scale-105 shadow-md"
+                        : "border-[#E9DCC5] hover:border-[#C66A1F]/80"
+                    }`}
+                  />
+                ))}
+              </div>
+            )}
 
-          {/* Thumbnail selector */}
-          {product.images?.length > 1 && (
-            <div className="flex gap-3 mt-4 sm:mt-5 flex-wrap justify-center">
-              {product.images.slice(0, 4).map((img, i) => (
-                <img
-                  key={i}
-                  src={img}
-                  alt={`thumb-${i}`}
-                  onClick={() => setSelectedImage(img)}
-                  className={`w-16 h-16 sm:w-20 sm:h-20 object-cover rounded-xl border-2 cursor-pointer transition-all duration-300 ${
-                    selectedImage === img
-                      ? "border-[#C66A1F] scale-105 shadow-md"
-                      : "border-[#E9DCC5] hover:border-[#C66A1F]/80"
-                  }`}
-                />
-              ))}
+            {/* Main Image */}
+            <div className="bg-[#F5E9DA] rounded-3xl p-5 sm:p-6 border border-[#C66A1F]/20 shadow-sm flex-1">
+              <img
+                src={selectedImage}
+                alt={product.name}
+                className="rounded-2xl object-contain w-full h-[350px] sm:h-[420px] md:h-[500px] transition-transform duration-500 hover:scale-105"
+              />
             </div>
-          )}
+          </div>
         </div>
 
         {/* ---------- RIGHT DETAILS ---------- */}
@@ -86,22 +89,6 @@ const ProductDetailsPage = () => {
             </h1>
             <p className="text-[#5C3A00]/80 text-base sm:text-lg leading-relaxed">
               {product.description}
-            </p>
-          </div>
-
-          {/* PRICE & NET WEIGHT */}
-          <div className="mt-6">
-            <div className="flex items-baseline gap-2 mb-3">
-              <span className="text-3xl sm:text-4xl font-bold text-[#C66A1F]">
-                ₹{product.price}
-              </span>
-              <span className="text-[#3A3A3A]/70 text-base font-medium">
-                / {product.qty}
-              </span>
-            </div>
-            <p className="text-[#5C3A00]/90 text-sm sm:text-base">
-              <strong className="text-[#3A3A3A]">Net Weight:</strong>{" "}
-              {product.netWeight || "100g"}
             </p>
           </div>
 
@@ -131,9 +118,7 @@ const ProductDetailsPage = () => {
           {/* ---------- PRODUCT INFO SECTIONS ---------- */}
           <div className="space-y-8 pt-10 border-t border-[#E9DCC5] mt-10">
             <div>
-              <h3 className="text-2xl font-semibold mb-3">
-                About the Product
-              </h3>
+              <h3 className="text-2xl font-semibold mb-3">About the Product</h3>
               <p className="text-[#5C3A00]/90 leading-relaxed text-sm sm:text-base">
                 {product.name} are delicious, ready-to-eat crispy fruit or nut
                 snacks made using advanced dehydration technology. This process

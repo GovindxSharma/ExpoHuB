@@ -1,40 +1,93 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import ProductCard from "../product/ProductCard";
-import products from "../../data/products";
+
+// Import all datasets
+import nutButters from "../../data/nutbutter";
+import driedFruits from "../../data/driedfruits";
+import muesliBars from "../../data/mueslibars";
+
+const categories = [
+  "Freeze-Dried Fruits",
+  "Nut Butters",
+  "Muesli and Protein Bars",
+];
 
 const ProductCatalogue = () => {
+  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
+  const [filteredProducts, setFilteredProducts] = useState([]);
+
+  useEffect(() => {
+    // Dynamically switch dataset based on category
+    switch (selectedCategory) {
+      case "Nut Butters":
+        setFilteredProducts(nutButters);
+        break;
+      case "Freeze-Dried Fruits":
+        setFilteredProducts(driedFruits);
+        break;
+      case "Muesli and Protein Bars":
+        setFilteredProducts(muesliBars);
+        break;
+      default:
+        setFilteredProducts([]);
+        break;
+    }
+  }, [selectedCategory]);
+
   return (
     <section
       id="products"
-      className="relative py-16 bg-gradient-to-b from-[#F5E9DA] to-[#FFFFFF]"
+      className="relative py-20 bg-gradient-to-b from-[#F5E9DA] to-[#FFFFFF]"
     >
-      {/* Subtle Background Glows */}
+      {/* Soft background glows */}
       <div className="absolute top-0 left-0 w-72 h-72 bg-[#C66A1F]/10 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#5C3A00]/10 blur-3xl rounded-full"></div>
 
       <div className="relative max-w-7xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-14">
-          <h2 className="text-4xl md:text-5xl font-[Playfair_Display] font-extrabold text-[#3A3A3A] mb-3">
-            Our{" "}
-            <span className="text-[#C66A1F]">
-              Product Catalogue
-            </span>
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-[Playfair_Display] font-extrabold text-[#3A3A3A] mb-4">
+            Our <span className="text-[#C66A1F]">Product Catalogue</span>
           </h2>
           <p className="text-[#5C3A00] max-w-2xl mx-auto text-base leading-relaxed font-[Lato]">
-            Explore our range of export-quality products crafted with care and precision — 
-            combining authentic flavor with world-class freshness.
+            Discover products crafted with care and authenticity — blending nutrition, taste, and freshness.
           </p>
         </div>
 
-        {/* Product Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        {/* Category Tabs */}
+        <div className="flex justify-center mb-16">
+          <div className="flex flex-wrap justify-center gap-3 md:gap-5 bg-white/60 backdrop-blur-sm border border-[#C66A1F]/20 rounded-full px-3 py-3 shadow-sm">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={`px-5 py-2.5 rounded-full font-[Lato] font-semibold text-sm md:text-base transition-all duration-300 relative ${
+                  selectedCategory === cat
+                    ? "bg-gradient-to-r from-[#C66A1F] to-[#5C3A00] text-white shadow-lg scale-105"
+                    : "text-[#5C3A00] hover:text-[#C66A1F] hover:bg-[#C66A1F]/10"
+                }`}
+              >
+                {cat}
+                {selectedCategory === cat && (
+                  <span className="absolute inset-x-5 -bottom-[6px] h-[2px] bg-[#C66A1F] rounded-full"></span>
+                )}
+              </button>
+            ))}
+          </div>
         </div>
 
-        
+        {/* Product Grid */}
+        {filteredProducts.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {filteredProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        ) : (
+          <p className="text-center text-[#5C3A00] mt-12 text-lg font-medium">
+            No products found in this category.
+          </p>
+        )}
       </div>
     </section>
   );
