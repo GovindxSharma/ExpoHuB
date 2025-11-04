@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useMemo } from "react";
 import ProductCard from "../product/ProductCard";
 import products from "../../data/products";
 
-const categories = [
-  "Freeze-Dried Fruits",
-  "Nut Butters",
-  "Muesli and Protein Bars",
-];
-
 const ProductCatalogue = () => {
-  const [selectedCategory, setSelectedCategory] = useState(categories[0]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
+  // Dynamically get all unique categories from products
+  const categories = useMemo(() => {
+    return [...new Set(products.map((p) => p.category))];
+  }, []);
 
-  useEffect(() => {
-    const filtered = products.filter(
-      (p) => p.category === selectedCategory
-    );
-    setFilteredProducts(filtered);
-  }, [selectedCategory]);
+  // Default to the first category
+  const [selectedCategory, setSelectedCategory] = useState(categories[0] || "");
+
+  // Filtered products based on selected category
+  const filteredProducts = products.filter(
+    (p) => p.category === selectedCategory
+  );
 
   return (
     <section
@@ -35,7 +32,8 @@ const ProductCatalogue = () => {
             Our <span className="text-[#C66A1F]">Product Catalogue</span>
           </h2>
           <p className="text-[#5C3A00] max-w-2xl mx-auto text-base leading-relaxed font-[Lato]">
-            Discover products crafted with care and authenticity — blending nutrition, taste, and freshness.
+            Discover products crafted with care and authenticity — blending
+            nutrition, taste, and freshness.
           </p>
         </div>
 
@@ -65,7 +63,10 @@ const ProductCatalogue = () => {
         {filteredProducts.length > 0 ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {filteredProducts.map((product) => (
-              <ProductCard key={product.id} product={product} />
+              <ProductCard
+                key={`${product.category}-${product.id}`}
+                product={product}
+              />
             ))}
           </div>
         ) : (
