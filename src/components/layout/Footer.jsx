@@ -85,10 +85,7 @@ const Footer = () => {
             Follow Us
           </h3>
           <div className="flex space-x-4 text-[#3A3A3A]/80 text-2xl mb-6">
-            <a
-              href="#"
-              className="hover:text-[#C66A1F] transition-colors duration-300"
-            >
+            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
               <FaFacebook />
             </a>
             <a
@@ -99,16 +96,10 @@ const Footer = () => {
             >
               <FaInstagram />
             </a>
-            <a
-              href="#"
-              className="hover:text-[#C66A1F] transition-colors duration-300"
-            >
+            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
               <FaLinkedin />
             </a>
-            <a
-              href="#"
-              className="hover:text-[#C66A1F] transition-colors duration-300"
-            >
+            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
               <FaTwitter />
             </a>
           </div>
@@ -133,11 +124,22 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Divider */}
+      {/* Divider + Credit */}
       <div className="mt-10 pt-5 border-t border-[#3A3A3A]/20 text-center text-[#3A3A3A]/70 text-xs sm:text-sm">
         © {new Date().getFullYear()}{" "}
-        <span className="text-[#5C3A00] font-medium">SK Foodz</span>. All rights
-        reserved.
+        <span className="text-[#5C3A00] font-medium">SK Foodz</span>. All rights reserved.
+        <br />
+        <span className="text-[#3A3A3A]/60 text-[11px] sm:text-xs mt-1 block">
+          Designed & Developed by{" "}
+          <a
+            href="https://govind-sharma.onrender.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#C66A1F] hover:underline"
+          >
+            Govind Sharma
+          </a>
+        </span>
       </div>
 
       {/* Floating glow */}
