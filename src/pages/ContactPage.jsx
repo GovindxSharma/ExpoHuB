@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Confetti from "react-confetti";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -9,22 +10,67 @@ const ContactPage = () => {
     quantity: "",
     message: "",
   });
+  const [result, setResult] = useState("");
+  const [modalMessage, setModalMessage] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
+
+  // update window size for confetti
+  useEffect(() => {
+    setWindowSize({ width: window.innerWidth, height: window.innerHeight });
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert("Your quotation request has been submitted successfully!");
-    setFormData({
-      name: "",
-      email: "",
-      company: "",
-      product: "",
-      quantity: "",
-      message: "",
-    });
+    setResult("Sending...");
+
+    const submitData = new FormData();
+    submitData.append("access_key", import.meta.env.VITE_WEB3FORMS_ACCESS_KEY);
+    submitData.append("name", formData.name);
+    submitData.append("email", formData.email);
+    submitData.append("company", formData.company);
+    submitData.append("product", formData.product);
+    submitData.append("quantity", formData.quantity);
+    submitData.append("message", formData.message);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: submitData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        setShowConfetti(true);
+        setModalMessage("Your quotation request has been sent successfully!");
+        setShowModal(true);
+        setFormData({
+          name: "",
+          email: "",
+          company: "",
+          product: "",
+          quantity: "",
+          message: "",
+        });
+
+        // Stop confetti after 5 seconds
+        setTimeout(() => setShowConfetti(false), 5000);
+      } else {
+        setModalMessage("Server busy. Please try again later.");
+        setShowModal(true);
+      }
+    } catch (err) {
+      setModalMessage("⚠️ Network error. Please try again.");
+      setShowModal(true);
+    }
+
+    setResult("");
   };
 
   return (
@@ -32,19 +78,31 @@ const ContactPage = () => {
       id="contact"
       className="relative py-20 bg-gradient-to-b from-[#F5E9DA] to-[#FFFFFF] overflow-hidden"
     >
-      {/* Background glows */}
-      <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#C66A1F]/15 blur-3xl rounded-full"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#5C3A00]/15 blur-3xl rounded-full"></div>
+      {showConfetti && <Confetti width={windowSize.width} height={windowSize.height} />}
 
-      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      {/* Modal */}
+      {showModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
+          <div className="bg-[#FFFFFF] rounded-xl p-6 max-w-md w-full text-center shadow-2xl relative">
+            <p className="text-[#3A3A3A] text-lg">{modalMessage}</p>
+            <button
+              onClick={() => setShowModal(false)}
+              className="mt-4 px-6 py-2 bg-[#C66A1F] text-white rounded-lg hover:bg-[#5C3A00] transition-all"
+            >
+              OK
+            </button>
+          </div>
+        </div>
+      )}
+
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
         {/* LEFT INFO SECTION */}
         <div className="space-y-6">
           <h2 className="text-4xl font-extrabold text-[#3A3A3A]">
             Get Your <span className="text-[#C66A1F]">Quotation</span> Today
           </h2>
           <p className="text-[#5C3A00]/80 text-lg leading-relaxed">
-            Reach out with your export needs and our team will provide a
-            customized quotation with transparent pricing, reliable delivery, and complete documentation.
+            Reach out with your export needs and our team will provide a customized quotation with transparent pricing, reliable delivery, and complete documentation.
           </p>
 
           <div className="bg-[#FFFFFF] rounded-2xl shadow-lg p-6 border border-[#F5E9DA]">
@@ -61,13 +119,13 @@ const ContactPage = () => {
               <br />
               📧{" "}
               <a
-                href="mailto:govindsharma2839@gmail.com"
+                href="mailto:enquiry@skfoodz.in"
                 className="text-[#C66A1F] hover:underline"
               >
                 enquiry@skfoodz.in
               </a>
             </p>
-            <p className="mt-4 text-sm text-[#5C3A00]/70"> Ahmedabad, India</p>
+            <p className="mt-4 text-sm text-[#5C3A00]/70">Ahmedabad, India</p>
           </div>
         </div>
 
@@ -79,10 +137,6 @@ const ContactPage = () => {
           <h3 className="text-2xl font-bold text-[#3A3A3A] mb-2">
             Request a Quotation
           </h3>
-          <p className="text-[#5C3A00]/80 text-sm mb-4">
-            Fill out the form below and we’ll get back to you within 24 hours.
-          </p>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <input
               type="text"
