@@ -119,10 +119,10 @@ const ContactPage = () => {
               <br />
               📧{" "}
               <a
-                href="mailto:enquiry@skfoodz.in"
+                href="mailto:business@skfoodz.in"
                 className="text-[#C66A1F] hover:underline"
               >
-                enquiry@skfoodz.in
+                business@skfoodz.in
               </a>
             </p>
             <p className="mt-4 text-sm text-[#5C3A00]/70">Ahmedabad, India</p>

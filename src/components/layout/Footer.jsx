@@ -70,10 +70,10 @@ const Footer = () => {
             <li>
               ✉️{" "}
               <a
-                href="mailto:enquiry@skfoodz.in"
+                href="mailto:business@skfoodz.in"
                 className="hover:text-[#C66A1F] transition-colors duration-200"
               >
-                enquiry@skfoodz.in
+                business@skfoodz.in
               </a>
             </li>
           </ul>
