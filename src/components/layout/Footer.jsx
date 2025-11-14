@@ -1,33 +1,38 @@
 import React from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
+// Importing local certification images
+import apeda from "../../assets/certificates/apeda.png";
+import dgft from "../../assets/certificates/dgft.png";
+import fda from "../../assets/certificates/fda.png";
+import fssai from "../../assets/certificates/fssai.png";
+import iso from "../../assets/certificates/iso.png";
+import msme from "../../assets/certificates/msme.png";
+import zed from "../../assets/certificates/zed.png";
+
 const Footer = () => {
   const certifications = [
-    {
-      src: "https://hampsbio.com/wp-content/uploads/2023/11/fssai-logo-transparent-free-png-e1700827593527-300x130.webp",
-      alt: "FSSAI Certified",
-    },
-    {
-      src: "https://hampsbio.com/wp-content/uploads/2023/11/download-removebg-preview.png",
-      alt: "FDA Approved",
-    },
-    {
-      src: "https://hampsbio.com/wp-content/uploads/2023/11/png-transparent-iso-9000-international-organization-for-standardization-iso-14000-management-system-iso-9001-text-logo-business-removebg-preview-300x182.png",
-      alt: "ISO Certified",
-    },
+    { src: apeda, alt: "APEDA Certified" },
+    { src: dgft, alt: "DGFT Certified" },
+    { src: fda, alt: "FDA Approved" },
+    { src: fssai, alt: "FSSAI Certified" },
+    { src: iso, alt: "ISO Certified" },
+    { src: msme, alt: "MSME Certified" },
+    { src: zed, alt: "ZED Certified" },
   ];
 
   return (
     <footer className="relative bg-[#efd0b0] text-[#3A3A3A] pt-14 pb-8 overflow-hidden">
+
       {/* Warm Glows */}
       <div className="absolute -top-20 -left-20 w-72 h-72 bg-[#C66A1F]/20 blur-3xl rounded-full"></div>
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#5C3A00]/20 blur-3xl rounded-full"></div>
 
       {/* Footer Grid */}
       <div className="relative max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16 items-start">
-        
-        {/* Logo & tagline */}
-        <div className="flex flex-col items-start justify-start text-left h-full">
+
+        {/* Logo */}
+        <div className="flex flex-col items-start">
           <img
             src="/logo.png"
             alt="SK Foodz Logo"
@@ -40,7 +45,7 @@ const Footer = () => {
         </div>
 
         {/* Quick Links */}
-        <div className="flex flex-col items-start justify-start text-left h-full">
+        <div>
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
             Quick Links
           </h3>
@@ -61,7 +66,7 @@ const Footer = () => {
         </div>
 
         {/* Contact Info */}
-        <div className="flex flex-col items-start justify-start text-left h-full">
+        <div>
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
             Get In Touch
           </h3>
@@ -79,11 +84,11 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Social Media + Certifications */}
-        <div className="flex flex-col items-start justify-start text-left h-full">
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
-            Follow Us
-          </h3>
+        {/* Social + Certifications */}
+        <div>
+          {/* Social */}
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Follow Us</h3>
+
           <div className="flex space-x-4 text-[#3A3A3A]/80 text-2xl mb-6">
             <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
               <FaFacebook />
@@ -104,19 +109,20 @@ const Footer = () => {
             </a>
           </div>
 
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
-            Certifications
-          </h3>
-          <div className="flex flex-wrap gap-3">
+          {/* Certifications */}
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Certifications</h3>
+
+          {/* PERFECT RESPONSIVE GRID */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
             {certifications.map((cert, i) => (
               <div
                 key={i}
-                className="bg-[#FFFFFF]/90 backdrop-blur-sm rounded-xl shadow-md p-2 flex items-center justify-center max-w-[120px] transition-all duration-300 hover:scale-105 hover:shadow-[0_0_12px_rgba(198,106,31,0.5)]"
+                className="bg-[#FFFFFF]/90 backdrop-blur-sm rounded-xl shadow-md p-2 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_12px_rgba(198,106,31,0.5)]"
               >
                 <img
                   src={cert.src}
                   alt={cert.alt}
-                  className="h-8 w-auto object-contain"
+                  className="h-10 w-auto object-contain"
                 />
               </div>
             ))}
@@ -124,7 +130,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Divider + Credit */}
+      {/* Divider */}
       <div className="mt-10 pt-5 border-t border-[#3A3A3A]/20 text-center text-[#3A3A3A]/70 text-xs sm:text-sm">
         © {new Date().getFullYear()}{" "}
         <span className="text-[#5C3A00] font-medium">SK Foodz</span>. All rights reserved.
@@ -142,7 +148,7 @@ const Footer = () => {
         </span>
       </div>
 
-      {/* Floating glow */}
+      {/* Bottom Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-[#C66A1F]/20 blur-[100px] opacity-30 animate-pulse"></div>
       </div>
