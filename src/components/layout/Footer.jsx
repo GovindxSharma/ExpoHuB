@@ -112,13 +112,17 @@ const Footer = () => {
           {/* Certifications */}
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Certifications</h3>
 
-          {/* PERFECT RESPONSIVE GRID */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
             {certifications.map((cert, i) => (
               <div
                 key={i}
-                className="bg-[#FFFFFF]/90 backdrop-blur-sm rounded-xl shadow-md p-2 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_12px_rgba(198,106,31,0.5)]"
+                className="relative group bg-[#FFFFFF]/90 backdrop-blur-sm rounded-xl shadow-md p-2 flex items-center justify-center transition-all duration-300 hover:scale-105 hover:shadow-[0_0_12px_rgba(198,106,31,0.5)]"
               >
+                {/* Tooltip */}
+                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-[#5C3A00] text-white text-xs opacity-0 pointer-events-none group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 whitespace-nowrap shadow-lg">
+                  {cert.alt}
+                </div>
+
                 <img
                   src={cert.src}
                   alt={cert.alt}
