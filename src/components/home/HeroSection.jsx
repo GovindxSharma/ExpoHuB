@@ -1,8 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+
 
 const HeroSection = () => {
   const [current, setCurrent] = useState(0);
+
+
+const navigate = useNavigate();
 
   const slides = [
     {
@@ -66,11 +71,11 @@ const HeroSection = () => {
               Browse Catalogue
             </button>
             <button
-              onClick={() => handleScroll("contact")}
-              className="border border-[#C66A1F] text-[#5C3A00] font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl hover:bg-[#C66A1F]/10 transition-all duration-300 text-sm sm:text-base"
-            >
-              Get in Touch
-            </button>
+  onClick={() => navigate("/contact")}
+  className="border border-[#C66A1F] text-[#5C3A00] font-semibold px-5 py-2.5 sm:px-6 sm:py-3 rounded-xl hover:bg-[#C66A1F]/10 transition-all duration-300 text-sm sm:text-base"
+>
+  Get in Touch
+</button>
           </div>
         </div>
 

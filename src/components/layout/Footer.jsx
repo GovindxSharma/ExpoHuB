@@ -52,22 +52,24 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Quick Links */}
-        <div>
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Quick Links</h3>
-          <ul className="space-y-2">
-            {quickLinks.map((link, i) => (
-              <li key={i}>
-                <Link
-                  to={link.path}
-                  className="text-[#3A3A3A]/80 hover:text-[#C66A1F] transition-colors duration-200 text-sm sm:text-base"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
+     {/* Quick Links */}
+<div>
+<h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Quick Links</h3>
+<ul className="space-y-2">
+  {quickLinks.map((link, i) => (
+    <li key={i}>
+      <Link
+        to={link.path}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="text-[#3A3A3A]/80 hover:text-[#C66A1F] transition-colors duration-200 text-sm sm:text-base"
+      >
+        {link.name}
+      </Link>
+    </li>
+  ))}
+</ul>
+</div>
+
 
         {/* Contact Info */}
         <div>
