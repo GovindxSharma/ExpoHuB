@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"; // <-- import Link
 import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
 
 // Importing local certification images
@@ -19,6 +20,13 @@ const Footer = () => {
     { src: iso, alt: "ISO Certified" },
     { src: msme, alt: "MSME Certified" },
     { src: zed, alt: "ZED Certified" },
+  ];
+
+  const quickLinks = [
+    { name: "Home", path: "/" },
+    { name: "Products", path: "/products" },
+    { name: "About Us", path: "/about" },
+    { name: "Contact", path: "/contact" },
   ];
 
   return (
@@ -46,22 +54,18 @@ const Footer = () => {
 
         {/* Quick Links */}
         <div>
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
-            Quick Links
-          </h3>
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Quick Links</h3>
           <ul className="space-y-2">
-            {["Home", "Products", "About Us", "Contact", "Request Quotation"].map(
-              (link, i) => (
-                <li key={i}>
-                  <a
-                    href="#"
-                    className="text-[#3A3A3A]/80 hover:text-[#C66A1F] transition-colors duration-200 text-sm sm:text-base"
-                  >
-                    {link}
-                  </a>
-                </li>
-              )
-            )}
+            {quickLinks.map((link, i) => (
+              <li key={i}>
+                <Link
+                  to={link.path}
+                  className="text-[#3A3A3A]/80 hover:text-[#C66A1F] transition-colors duration-200 text-sm sm:text-base"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
           </ul>
         </div>
 
@@ -86,9 +90,7 @@ const Footer = () => {
 
         {/* Social + Certifications */}
         <div>
-          {/* Social */}
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Follow Us</h3>
-
           <div className="flex space-x-4 text-[#3A3A3A]/80 text-2xl mb-6">
             <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
               <FaFacebook />
@@ -109,16 +111,13 @@ const Footer = () => {
             </a>
           </div>
 
-          {/* Certifications */}
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Certifications</h3>
-
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
             {certifications.map((cert, i) => (
               <div
                 key={i}
                 className="relative group flex items-center justify-center transition-all duration-300 hover:scale-110"
               >
-                {/* Tooltip */}
                 <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-[#5C3A00] text-white text-xs opacity-0 pointer-events-none group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 whitespace-nowrap shadow-lg">
                   {cert.alt}
                 </div>
