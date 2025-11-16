@@ -102,13 +102,7 @@ const Footer = () => {
               className="hover:text-[#C66A1F] transition-colors duration-300"
             >
               <FaInstagram />
-            </a>
-            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
-              <FaLinkedin />
-            </a>
-            <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
-              <FaTwitter />
-            </a>
+            </a>     
           </div>
 
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Certifications</h3>

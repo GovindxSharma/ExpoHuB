@@ -11,7 +11,9 @@ const ProductDetailsPage = () => {
   // Find product by ID
   const product = productsData.find((p) => p.id === parseInt(id));
 
-  const [selectedImage, setSelectedImage] = useState(product?.images?.[0] || "");
+  const [selectedImage, setSelectedImage] = useState(
+    product?.images?.[0] || ""
+  );
 
   // Modal state
   const [openSampleModal, setOpenSampleModal] = useState(false);
@@ -94,7 +96,6 @@ const ProductDetailsPage = () => {
   return (
     <section className="max-w-7xl mx-auto px-5 md:px-10 py-16 md:py-24">
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-14 items-start">
-        
         {/* ---------- LEFT IMAGE ---------- */}
         <div className="lg:sticky top-24 self-start">
           <div className="relative flex">
@@ -178,42 +179,56 @@ const ProductDetailsPage = () => {
             </Link>
           </div>
 
-          {/* Info Sections */}
           <div className="space-y-8 pt-10 border-t border-[#E9DCC5] mt-10">
+            {" "}
             <div>
               <h3 className="text-2xl font-semibold mb-3">About the Product</h3>
-              <p className="text-[#5C3A00]/90">{product.name} are delicious snacks...</p>
+              <p className="text-[#5C3A00]/90 leading-relaxed text-sm sm:text-base">
+                {" "}
+                {product.name} are delicious, ready-to-eat snacks made using
+                advanced dehydration or blending techniques to preserve flavor,
+                nutrients, and freshness. A perfect balance of taste and
+                nutrition with no artificial preservatives.{" "}
+              </p>
             </div>
-
             <div>
               <h3 className="text-2xl font-semibold mb-3">Who Can Eat</h3>
-              <p className="text-[#5C3A00]/90">
-                Ideal for kids, adults, fitness lovers, etc.
+              <p className="text-[#5C3A00]/90 leading-relaxed text-sm sm:text-base">
+                {" "}
+                Ideal for kids, adults, and fitness enthusiasts. Great for
+                school snacks, office lunches, gym recovery, or healthy travel
+                munching.{" "}
               </p>
             </div>
-
             <div>
               <h3 className="text-2xl font-semibold mb-3">How to Use</h3>
-              <p className="text-[#5C3A00]/90">
-                Add to smoothies, yogurt, cereal, etc.
-              </p>
-            </div>
-
+              <p className="text-[#5C3A00]/90 leading-relaxed text-sm sm:text-base">
+                {" "}
+                Enjoy directly from the pack or add to cereals, smoothies,
+                yogurt, desserts, or toast. A convenient, nutrient-packed snack
+                for any time of the day.{" "}
+              </p>{" "}
+            </div>{" "}
             <div>
-              <h3 className="text-2xl font-semibold mb-3">What You Get</h3>
-              <ul className="list-disc list-inside text-[#5C3A00]/90 space-y-1">
-                <li>100% natural</li>
-                <li>No preservatives</li>
-                <li>Gluten-free</li>
-                <li>Sealed pouch</li>
-              </ul>
-            </div>
-
+              {" "}
+              <h3 className="text-2xl font-semibold mb-3">What You Get</h3>{" "}
+              <ul className="list-disc list-inside text-[#5C3A00]/90 leading-relaxed text-sm sm:text-base space-y-1">
+                {" "}
+                <li>100% natural ingredients</li>{" "}
+                <li>No preservatives or refined sugar</li>{" "}
+                <li>Gluten-free and vegan friendly</li>{" "}
+                <li>Sealed in a food-grade, multi-layer pouch</li>{" "}
+              </ul>{" "}
+            </div>{" "}
             <div>
-              <h3 className="text-2xl font-semibold mb-3">How to Store</h3>
-              <p className="text-[#5C3A00]/90">
-                Shelf life: {product.shelfLife || "180"} days
-              </p>
+              {" "}
+              <h3 className="text-2xl font-semibold mb-3">How to Store</h3>{" "}
+              <p className="text-[#5C3A00]/90 leading-relaxed text-sm sm:text-base">
+                {" "}
+                Store in a cool, dry place away from sunlight. Once opened,
+                reseal tightly to maintain freshness. Shelf life:{" "}
+                {product.shelfLife || "180"} days from manufacture.{" "}
+              </p>{" "}
             </div>
           </div>
         </div>
@@ -282,10 +297,7 @@ const ProductDetailsPage = () => {
       )}
 
       {/* PRODUCT YOU MAY LIKE SECTION */}
-      <ProductsYouMayLike
-        currentId={id}
-        currentCategory={product.category}
-      />
+      <ProductsYouMayLike currentId={id} currentCategory={product.category} />
 
       {/* OTHER CATEGORIES SECTION */}
       <OtherCategories currentCategory={product.category} />
