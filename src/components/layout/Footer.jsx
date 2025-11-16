@@ -1,8 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom"; // <-- import Link
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import { FaFacebook, FaInstagram } from "react-icons/fa";
 
-// Importing local certification images
 import apeda from "../../assets/certificates/apeda.png";
 import dgft from "../../assets/certificates/dgft.png";
 import fda from "../../assets/certificates/fda.png";
@@ -37,7 +36,7 @@ const Footer = () => {
       <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#5C3A00]/20 blur-3xl rounded-full"></div>
 
       {/* Footer Grid */}
-      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16 items-start">
+      <div className="relative max-w-7xl mx-auto px-5 sm:px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 lg:gap-16">
 
         {/* Logo */}
         <div className="flex flex-col items-start">
@@ -52,30 +51,27 @@ const Footer = () => {
           </p>
         </div>
 
-     {/* Quick Links */}
-<div>
-<h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Quick Links</h3>
-<ul className="space-y-2">
-  {quickLinks.map((link, i) => (
-    <li key={i}>
-      <Link
-        to={link.path}
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        className="text-[#3A3A3A]/80 hover:text-[#C66A1F] transition-colors duration-200 text-sm sm:text-base"
-      >
-        {link.name}
-      </Link>
-    </li>
-  ))}
-</ul>
-</div>
-
-
-        {/* Contact Info */}
+        {/* Quick Links */}
         <div>
-          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">
-            Get In Touch
-          </h3>
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Quick Links</h3>
+          <ul className="space-y-2">
+            {quickLinks.map((link, i) => (
+              <li key={i}>
+                <Link
+                  to={link.path}
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                  className="text-[#3A3A3A]/80 hover:text-[#C66A1F] transition-colors duration-200 text-sm sm:text-base block"
+                >
+                  {link.name}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        {/* Contact */}
+        <div>
+          <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Get In Touch</h3>
           <ul className="space-y-2 text-[#3A3A3A]/80 text-sm sm:text-base">
             <li>📞 +91 81040 27533</li>
             <li>
@@ -93,6 +89,7 @@ const Footer = () => {
         {/* Social + Certifications */}
         <div>
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Follow Us</h3>
+
           <div className="flex space-x-4 text-[#3A3A3A]/80 text-2xl mb-6">
             <a href="#" className="hover:text-[#C66A1F] transition-colors duration-300">
               <FaFacebook />
@@ -104,17 +101,19 @@ const Footer = () => {
               className="hover:text-[#C66A1F] transition-colors duration-300"
             >
               <FaInstagram />
-            </a>     
+            </a>
           </div>
 
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Certifications</h3>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
+
+          <div className="grid grid-cols-3 sm:grid-cols-3 md:grid-cols-4 gap-4 w-full">
             {certifications.map((cert, i) => (
               <div
                 key={i}
                 className="relative group flex items-center justify-center transition-all duration-300 hover:scale-110"
               >
-                <div className="absolute -top-10 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-[#5C3A00] text-white text-xs opacity-0 pointer-events-none group-hover:opacity-100 group-hover:-translate-y-1 transition-all duration-300 whitespace-nowrap shadow-lg">
+                {/* Tooltip — mobile safe */}
+                <div className="absolute bottom-full mb-2 left-1/2 -translate-x-1/2 px-3 py-1 rounded-md bg-[#5C3A00] text-white text-xs opacity-0 group-hover:opacity-100 transition-all duration-300 whitespace-nowrap shadow-lg z-20">
                   {cert.alt}
                 </div>
 
@@ -127,29 +126,33 @@ const Footer = () => {
             ))}
           </div>
         </div>
+
       </div>
 
-      {/* Divider */}
-      <div className="mt-10 pt-5 border-t border-[#3A3A3A]/20 text-center text-[#3A3A3A]/70 text-xs sm:text-sm">
-        © {new Date().getFullYear()}{" "}
-        <span className="text-[#5C3A00] font-medium">SK Foodz</span>. All rights reserved.
-        <br />
-        <span className="text-[#3A3A3A]/60 text-[11px] sm:text-xs mt-1 block">
-          Designed & Developed by{" "}
-          <a
-            href="https://govind-sharma.onrender.com/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[#C66A1F] hover:underline"
-          >
-            Govind Sharma
-          </a>
-        </span>
-      </div>
+ {/* Divider */}
+<div className="relative z-50 mt-10 pt-5 border-t border-[#3A3A3A]/20 text-center px-6">
+<p className="text-[#3A3A3A]/70 text-xs sm:text-sm leading-relaxed">
+  © {new Date().getFullYear()}{" "}
+  <span className="text-[#5C3A00] font-medium">SK Foodz</span>. All rights reserved.
+</p>
 
-      {/* Bottom Glow */}
+<p className="text-[#3A3A3A]/60 text-[11px] sm:text-xs mt-2 leading-relaxed">
+  Designed & Developed by{" "}
+  <a
+    href="https://govind-sharma.onrender.com/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-[#C66A1F] underline-offset-2 hover:underline font-medium"
+  >
+    Govind Sharma
+  </a>
+</p>
+</div>
+
+
+      {/* Soft Bottom Glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-[#C66A1F]/20 blur-[100px] opacity-30 animate-pulse"></div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[250px] bg-[#C66A1F]/20 blur-[100px] opacity-30"></div>
       </div>
     </footer>
   );
