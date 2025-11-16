@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Confetti from "react-confetti";
+import { FileText, ArrowRight } from "lucide-react";
 
 const ProductCard = ({ product }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +24,12 @@ const ProductCard = ({ product }) => {
   useEffect(() => {
     setWindowSize({ width: window.innerWidth, height: window.innerHeight });
   }, []);
+
+  const whatsappNumber = "918104027533";
+  const whatsappMessage = `Hi, I want the brochure for ${product.category}: ${product.name}`;
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -75,42 +82,63 @@ const ProductCard = ({ product }) => {
 
       {/* Product Card */}
       <div
-        onClick={() => navigate(`/products/${product.id}`)}
-        onMouseEnter={() => setHovered(true)}
-        onMouseLeave={() => setHovered(false)}
-        className="group bg-[#FFFFFF] rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-[#F5E9DA] hover:-translate-y-1 flex flex-col justify-between h-full cursor-pointer"
+        className="group bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-500 overflow-hidden border border-[#F5E9DA] hover:-translate-y-1 flex flex-col justify-between h-full"
       >
-        <div className="relative flex items-center justify-center bg-[#F5E9DA] h-56 overflow-hidden">
+        {/* Image */}
+        <div
+          onClick={() => navigate(`/products/${product.id}`)}
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+          className="relative flex items-center justify-center bg-[#F5E9DA] h-56 overflow-hidden cursor-pointer"
+        >
           <img
             src={hovered && product.images?.[1] ? product.images[1] : product.images?.[0]}
             alt={product.name}
             className="max-h-52 w-auto object-contain transition-transform duration-700 group-hover:scale-105"
           />
         </div>
+
+        {/* Content */}
         <div className="p-5 flex flex-col flex-grow justify-between">
-          <div>
-            <h3 className="text-lg font-bold text-[#3A3A3A] mb-2 group-hover:text-[#C66A1F] transition-colors duration-300">
+          <div className="cursor-pointer" onClick={() => navigate(`/products/${product.id}`)}>
+            <h3 className="text-lg font-bold text-[#3A3A3A] mb-2 group-hover:text-[#C66A1F] transition-colors">
               {product.name}
             </h3>
             <p className="text-[#5C3A00]/80 text-sm mb-3 line-clamp-3">
               {product.description}
             </p>
           </div>
-          <div className="flex justify-end mt-4">
+
+          {/* Buttons */}
+          <div className="flex flex-col gap-3 mt-4">
+            {/* WhatsApp Request Brochure */}
             <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsModalOpen(true);
-              }}
-              className="px-3 py-2 text-sm font-medium border border-[#C66A1F] text-[#C66A1F] rounded-lg hover:bg-[#C66A1F]/10 transition-all duration-300"
+              onClick={() => window.open(whatsappURL, "_blank")}
+              className="w-full flex items-center justify-center gap-2 py-2 border border-[#C66A1F] text-[#C66A1F] rounded-lg hover:bg-[#C66A1F]/10 transition-all"
             >
-              Customize
+              <FileText size={16} /> Request E-Brochure
+            </button>
+
+            {/* Customize Button */}
+            <button
+              onClick={() => setIsModalOpen(true)}
+              className="w-full px-3 py-2 text-sm font-medium bg-[#C66A1F] text-white rounded-lg hover:bg-[#5C3A00] transition-all"
+            >
+              Customize Order
+            </button>
+
+            {/* Learn More (Bottom Right) */}
+            <button
+              onClick={() => navigate(`/products/${product.id}`)}
+              className="w-full flex items-center justify-center gap-2 py-2 text-sm font-medium text-[#5C3A00] underline underline-offset-4 hover:text-[#C66A1F] transition"
+            >
+              Learn More <ArrowRight size={14} />
             </button>
           </div>
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Customize Modal */}
       {isModalOpen && (
         <div
           className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50 px-4"
@@ -124,17 +152,17 @@ const ProductCard = ({ product }) => {
 
             <form className="space-y-4" onSubmit={handleSubmit}>
               <div>
-                <label className="block text-sm font-medium text-[#3A3A3A] mb-1">Product</label>
+                <label className="block text-sm font-medium mb-1">Product</label>
                 <input
                   type="text"
                   value={product.name}
                   readOnly
-                  className="w-full border border-[#F5E9DA] rounded-lg p-2 focus:ring-[#C66A1F] focus:border-[#C66A1F]"
+                  className="w-full border rounded-lg p-2 bg-white"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#3A3A3A] mb-1">Quantity (kgs)</label>
+                <label className="block text-sm font-medium mb-1">Quantity (kgs)</label>
                 <input
                   type="number"
                   name="quantity"
@@ -142,56 +170,38 @@ const ProductCard = ({ product }) => {
                   onChange={handleChange}
                   placeholder="Enter quantity"
                   min="10"
-                  className="w-full border border-[#F5E9DA] rounded-lg p-2 focus:ring-[#C66A1F] focus:border-[#C66A1F]"
+                  className="w-full border rounded-lg p-2"
                   required
                 />
-                <p className="text-xs text-[#5C3A00]/70 mt-1">Minimum order: 10 kgs</p>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#3A3A3A] mb-2">Packaging Options</label>
-                <div className="flex flex-col gap-2 text-sm text-[#3A3A3A]">
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="packaging"
-                      value="bulk"
-                      checked={formData.packaging === "bulk"}
-                      onChange={handleChange}
-                      required
-                    /> Bulk Bags
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="packaging"
-                      value="retail"
-                      checked={formData.packaging === "retail"}
-                      onChange={handleChange}
-                      required
-                    /> Retail Packs
-                  </label>
-                  <label className="flex items-center gap-2">
-                    <input
-                      type="radio"
-                      name="packaging"
-                      value="private"
-                      checked={formData.packaging === "private"}
-                      onChange={handleChange}
-                      required
-                    /> Private Label
-                  </label>
+                <label className="block text-sm font-medium mb-1">Packaging Options</label>
+                <div className="flex flex-col gap-2 text-sm">
+                  {["bulk", "retail", "private"].map((opt) => (
+                    <label key={opt} className="flex items-center gap-2">
+                      <input
+                        type="radio"
+                        name="packaging"
+                        value={opt}
+                        checked={formData.packaging === opt}
+                        onChange={handleChange}
+                        required
+                      />
+                      {opt === "bulk" ? "Bulk Bags" : opt === "retail" ? "Retail Packs" : "Private Label"}
+                    </label>
+                  ))}
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-[#3A3A3A] mb-1">Additional Notes</label>
+                <label className="block text-sm font-medium mb-1">Additional Notes</label>
                 <textarea
                   name="notes"
                   value={formData.notes}
                   onChange={handleChange}
                   placeholder="Any special requirements?"
-                  className="w-full border border-[#F5E9DA] rounded-lg p-2 h-24 focus:ring-[#C66A1F] focus:border-[#C66A1F]"
+                  className="w-full border rounded-lg p-2 h-24"
                 ></textarea>
               </div>
 
@@ -199,13 +209,13 @@ const ProductCard = ({ product }) => {
                 <button
                   type="button"
                   onClick={() => setIsModalOpen(false)}
-                  className="px-4 py-2 text-sm font-medium text-[#3A3A3A] border border-[#F5E9DA] rounded-lg hover:bg-[#F5E9DA] transition"
+                  className="px-4 py-2 border rounded-lg"
                 >
                   Close
                 </button>
                 <button
                   type="submit"
-                  className="px-5 py-2 text-sm font-medium bg-[#C66A1F] text-white rounded-lg hover:bg-[#5C3A00] transition"
+                  className="px-5 py-2 bg-[#C66A1F] text-white rounded-lg"
                 >
                   Request Custom Quote
                 </button>
@@ -218,11 +228,11 @@ const ProductCard = ({ product }) => {
       {/* Result Modal */}
       {showResultModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-          <div className="bg-[#FFFFFF] rounded-xl p-6 max-w-md w-full text-center shadow-2xl">
+          <div className="bg-white rounded-xl p-6 max-w-md w-full text-center shadow-2xl">
             <p className="text-[#3A3A3A]">{resultModal}</p>
             <button
               onClick={() => setShowResultModal(false)}
-              className="mt-4 px-6 py-2 bg-[#C66A1F] text-white rounded-lg hover:bg-[#5C3A00] transition-all"
+              className="mt-4 px-6 py-2 bg-[#C66A1F] text-white rounded-lg hover:bg-[#5C3A00] transition"
             >
               OK
             </button>
