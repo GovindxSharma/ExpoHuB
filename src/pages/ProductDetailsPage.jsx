@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import productsData from "../data/products"; // ✅ single import
+import productsData from "../data/products";
 import { Share2, PackageCheck, ArrowLeft } from "lucide-react";
 
 const ProductDetailsPage = () => {
@@ -31,6 +31,14 @@ const ProductDetailsPage = () => {
     );
   }
 
+  // --------------------- WHATSAPP SAMPLE REQUEST ---------------------
+  const whatsappNumber = "918104027533"; // 91 = country code
+  const whatsappMessage = `Hi, I want the brochure for ${product.category}: ${product.name}`;
+  const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(
+    whatsappMessage
+  )}`;
+
+  // ----------------------- SHARE HANDLER ------------------------------
   const handleShare = async () => {
     if (navigator.share) {
       try {
@@ -100,9 +108,15 @@ const ProductDetailsPage = () => {
 
           {/* Buttons */}
           <div className="flex flex-col sm:flex-row sm:flex-wrap gap-4 mt-8">
-            <button className="flex items-center justify-center gap-2 px-7 py-3 bg-[#C66A1F] text-white rounded-xl font-semibold hover:bg-[#5C3A00] transition-all duration-300 shadow-md w-full sm:w-auto">
-              <PackageCheck size={18} /> Request Sample
+            {/* WhatsApp Sample Button */}
+            <button
+              onClick={() => window.open(whatsappURL, "_blank")}
+              className="flex items-center justify-center gap-2 px-7 py-3 bg-[#C66A1F] text-white rounded-xl font-semibold hover:bg-[#5C3A00] transition-all duration-300 shadow-md w-full sm:w-auto"
+            >
+              <PackageCheck size={18} /> Request Brochure & Sample
             </button>
+
+            {/* Share Button */}
             <button
               onClick={handleShare}
               className="flex items-center justify-center gap-2 px-7 py-3 border border-[#C66A1F] text-[#C66A1F] rounded-xl font-medium hover:bg-[#F5E9DA] transition-all duration-300 w-full sm:w-auto"
@@ -117,7 +131,7 @@ const ProductDetailsPage = () => {
               to="/products"
               className="inline-flex items-center gap-2 px-5 py-2.5 text-[#C66A1F] border border-[#C66A1F]/40 rounded-xl font-medium hover:bg-[#F5E9DA] transition-all duration-300"
             >
-              <ArrowLeft size={18} /> Back to Products
+                <ArrowLeft size={18} /> Back to Products
             </Link>
           </div>
 

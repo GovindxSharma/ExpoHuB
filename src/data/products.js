@@ -60,7 +60,7 @@ const products = [
   {
     id: 1,
     category: "Freeze-Dried Fruits",
-    name: "Mango Snacks",
+    name: "Mango Chunks",
     description: "Delicious sun-dried mango slices packed with natural sweetness and nutrients.",
     images: [mango, mango2],
   },
@@ -74,7 +74,7 @@ const products = [
   {
     id: 3,
     category: "Freeze-Dried Fruits",
-    name: "Pomegranate Kernel",
+    name: "Pomegranate Kernel Chunks",
     description: "Crunchy and tangy dried pomegranate kernels rich in antioxidants and fiber.",
     images: [pomegranate, pomegranate2],
   },
@@ -88,7 +88,7 @@ const products = [
   {
     id: 5,
     category: "Freeze-Dried Fruits",
-    name: "Custard Apple Snacks",
+    name: "Custard Apple Chunks",
     description: "Naturally sweet custard apple bites packed with creamy flavor and nutrients.",
     images: [custardapple, custardapple2],
   },
@@ -102,21 +102,21 @@ const products = [
   {
     id: 7,
     category: "Freeze-Dried Fruits",
-    name: "Black Jamun Snacks",
+    name: "Black Jamun Chunks",
     description: "Tangy-sweet black jamun snacks packed with natural goodness and antioxidants.",
     images: [blackjamun, blackjamun2],
   },
   {
     id: 8,
     category: "Freeze-Dried Fruits",
-    name: "Banana Slices",
+    name: "Banana Chunks",
     description: "Crispy and naturally sweet banana chips made from ripe, handpicked bananas.",
     images: [banana, banana2],
   },
   {
     id: 9,
     category: "Freeze-Dried Fruits",
-    name: "Apple Slices",
+    name: "Apple Chunks",
     description: "Light, crunchy apple slices that retain the natural sweetness of fresh apples.",
     images: [apple, apple2],
   },
