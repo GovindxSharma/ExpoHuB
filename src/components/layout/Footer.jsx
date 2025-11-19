@@ -91,7 +91,7 @@ const Footer = () => {
           <h3 className="text-lg font-semibold text-[#5C3A00] mb-3">Follow Us</h3>
 
           <div className="flex space-x-4 text-[#3A3A3A]/80 text-2xl mb-6">
-            <a href="https://www.facebook.com/people/S-K-FOODZ/61583810977113/" className="hover:text-[#C66A1F] transition-colors duration-300">
+            <a href="https://www.facebook.com/people/S-K-FOODZ/61583810977113/" target="_blank" className="hover:text-[#C66A1F] transition-colors duration-300">
               <FaFacebook />
             </a>
             <a
